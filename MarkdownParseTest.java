@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.*;
 
@@ -16,13 +17,18 @@ public class MarkdownParseTest {
 
 	@Test
 	public void getLinke() throws IOException {
-	
-		Path fileName = Path.of("test-file.md");
-	    String contents = Files.readString(fileName);
-		ArrayList<String> res = MarkdownParse.getLinks(contents);
-		ArrayList<String> ans = new ArrayList<>();
-		ans.add("https://something.com");
-		ans.add("some-page.html");
-		assertEquals(res, ans);
+		String[] files = {"test-file.md","anotherBug.md", "aNewFile.md"};
+		List<List<String>> results = List.of(List.of("some-page.html","https://something.com"),
+		 new ArrayList<String>, e3)
+		for (int i = 0; i < files.length; i++) {
+			Path fileName = Path.of(files[i]);
+	    	String contents = Files.readString(fileName);
+			ArrayList<String> res = MarkdownParse.getLinks(contents);
+			List<String> ans = results.get(i);
+			
+			assertEquals(res, ans);
+		}
+		
+		
 	}
 }
